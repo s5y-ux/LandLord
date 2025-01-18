@@ -1,0 +1,8 @@
+# In-game cost to register a Home
+HomeRegistrationFee: 100
+
+# Amount of days that will pass by before rent is collected
+DaysBeforeRent: 1
+
+# Amount of money you will collect on rent
+RentMoney: 100

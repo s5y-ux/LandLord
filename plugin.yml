@@ -1,0 +1,9 @@
+name: LandLord
+main: net.ddns.vcccd.Main
+version: 1.0
+api-version: '1.20'
+commands:
+   property:
+      description: Gives you the property wand
+      usage: /<command>
+      permission: landlord.getwand
