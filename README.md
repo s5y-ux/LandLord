@@ -1,4 +1,4 @@
-![Land-Lord-4-1-2025](https://github.com/user-attachments/assets/e9c8a832-ce50-4045-a263-a9076470b1dc)
+![Land-Lord-4-1-2025](https://github.com/user-attachments/assets/945b46bf-c7c7-4672-9328-e68cc8d5a7db)
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)
