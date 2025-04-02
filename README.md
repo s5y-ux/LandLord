@@ -4,6 +4,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)](https://github.com/s5y-ux/LandLord/issues)
 [![GitHub stars](https://img.shields.io/github/stars/s5y-ux/LandLord?style=social)](https://github.com/s5y-ux/LandLord/stargazers)
 
+
 ## Overview
 
 **LandLord** is a Bukkit plugin that introduces a property management system where players can spawn "renters" (villagers) into designated properties within the game. Renters can be evicted using a special item and must be tied to a property. Players can also use a special "Renter Remover Wand" to remove renters from their properties.
