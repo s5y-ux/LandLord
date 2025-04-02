@@ -1,4 +1,4 @@
-# LandLord Plugin
+![Land-Lord-4-1-2025](https://github.com/user-attachments/assets/e9c8a832-ce50-4045-a263-a9076470b1dc)
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)
