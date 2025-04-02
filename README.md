@@ -1,6 +1,6 @@
 # LandLord Plugin
 
-[![GitHub license](https://img.shields.io/github/license/yourusername/LandLord)](https://github.com/yourusername/LandLord/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/yourusername/LandLord)](https://github.com/s5y-ux/LandLord/blob/main/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/yourusername/LandLord)](https://github.com/yourusername/LandLord/releases)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/LandLord?style=social)](https://github.com/yourusername/LandLord/stargazers)
 
