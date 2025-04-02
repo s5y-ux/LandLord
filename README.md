@@ -1,8 +1,8 @@
 # LandLord Plugin
 
-[![GitHub license](https://img.shields.io/github/license/s5y-ux/LandLord)](https://github.com/s5y-ux/LandLord/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)](https://github.com/s5y-ux/LandLord/issues)
-[![GitHub stars](https://img.shields.io/github/stars/s5y-ux/LandLord?style=social)](https://github.com/s5y-ux/LandLord/stargazers)
+![GitHub license](https://img.shields.io/github/license/s5y-ux/LandLord)
+![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)
+![GitHub stars](https://img.shields.io/github/stars/s5y-ux/LandLord?style=social)
 
 
 ## Overview
