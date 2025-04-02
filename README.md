@@ -1,6 +1,6 @@
 # LandLord Plugin
 
-![GitHub license](https://img.shields.io/github/license/s5y-ux/LandLord)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)
 ![GitHub stars](https://img.shields.io/github/stars/s5y-ux/LandLord?style=social)
 
