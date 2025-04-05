@@ -67,9 +67,10 @@ public class Main extends JavaPlugin{
 	public void onEnable() {	
 		new CollectRent(this).runTaskTimer(this, 0L, 24000L);
 		FileConfiguration config = this.getConfig();
-		config.addDefault("HomeRegistrationFee", 100);
+		config.addDefault("HomeRegistrationFee", 100.00);
 		config.addDefault("DaysBeforeRent", 1);
-		config.addDefault("RentMoney", 100);
+		config.addDefault("RentMoney", 100.00);
+		config.addDefault("SellAmount", 50.00);
 		this.saveDefaultConfig();
 		if (!setupEconomy()) {
             getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
@@ -83,6 +84,7 @@ public class Main extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new RenterEvents(), this);
         getServer().getPluginManager().registerEvents(new DeedMenu(this), this);
         getServer().getPluginManager().registerEvents(new PropertyGreifPrevention(this), this);
+        getServer().getPluginManager().registerEvents(new UpdateChecker(), this);
         this.getCommand("managehouses").setExecutor(new DeedMenu(this));
         this.getCommand("property").setExecutor(new PropertyWand(this));
         this.getCommand("removerenter").setExecutor(new RenterRemoverWand());

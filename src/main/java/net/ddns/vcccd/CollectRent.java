@@ -23,7 +23,7 @@ public class CollectRent extends BukkitRunnable{
 	
 	@Override
 	public void run() {
-		int rentAmount = main.getConfig().getInt("RentMoney");
+		double rentAmount = main.getConfig().getDouble("RentMoney");
 		List<propertyJSON> playerProperties = main.getPlayerPropertiesFile().loadJson(propertyJSON.class);
 		Economy serverEconomy = main.getEconomy();
 		for(Player player: Bukkit.getOnlinePlayers()) {

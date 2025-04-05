@@ -70,6 +70,9 @@ public class PropertyWandEvents implements Listener {
     
     private boolean playerHasTooManyHomes(Player player) {
     	List<propertyJSON> playerProperties = main.getPlayerPropertiesFile().loadJson(propertyJSON.class);
+    	if(playerProperties == null) {
+    		return false;
+    	}
     	int homeCount = 0;
     	for(propertyJSON property: playerProperties) {
     		if(property.playerUUID.equals(player.getUniqueId())) {
@@ -81,7 +84,7 @@ public class PropertyWandEvents implements Listener {
     
     //
     private void purchaseSuccess(Player player, int refPoints[][], World world, UUID playerId) {
-    	main.getEconomy().withdrawPlayer(player, main.getConfig().getInt("HomeRegistrationFee"));
+    	main.getEconomy().withdrawPlayer(player, main.getConfig().getDouble("HomeRegistrationFee"));
     	player.sendMessage(main.getPluginPrefix() + ChatColor.GREEN + "Deed purchased sucessfully!");
     	player.sendMessage(main.getPluginPrefix() + String.format(ChatColor.translateAlternateColorCodes('&', "Your balance is now: &f[&a$%.2f&f]"), main.getEconomy().getBalance(player)));
     	particles(player, Particle.CLOUD);
