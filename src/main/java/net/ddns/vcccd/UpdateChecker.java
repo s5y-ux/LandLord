@@ -11,12 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 
-/**
-* Created by EncryptDev
-*/
 public class UpdateChecker implements Listener {
 	
-	private String GameVersion = "0.0.4";
+	private String GameVersion = "0.0.5";
 	private String Version = constructData();
 
     //Used to construct the JSON data for the rest of the class
