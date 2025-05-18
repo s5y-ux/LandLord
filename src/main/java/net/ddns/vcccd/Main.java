@@ -14,7 +14,7 @@ import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin{
 	
-	
+	// Test Comment
 	private ConsoleCommandSender console = getServer().getConsoleSender();
 	private String prefix = ChatColor.translateAlternateColorCodes('&', "&7[&aLandLord&7] - ");
 	private static Economy econ = null;
