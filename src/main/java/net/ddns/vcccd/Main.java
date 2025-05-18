@@ -14,7 +14,6 @@ import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin{
 	
-	// Test Comment
 	private ConsoleCommandSender console = getServer().getConsoleSender();
 	private String prefix = ChatColor.translateAlternateColorCodes('&', "&7[&aLandLord&7] - ");
 	private static Economy econ = null;
@@ -71,7 +70,9 @@ public class Main extends JavaPlugin{
         config.addDefault("MaxPropertySize", 1000);
 		this.saveDefaultConfig();
 		if (!setupEconomy()) {
-            getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            console.sendMessage(prefix + ChatColor.RED + "Vault not found! Disabling plugin...");
+            console.sendMessage(prefix + ChatColor.YELLOW + "Please install Vault to use this plugin.");
+            console.sendMessage(prefix + ChatColor.YELLOW + "https://www.spigotmc.org/resources/vault.34315/");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
