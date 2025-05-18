@@ -2,7 +2,7 @@ main: net.ddns.vcccd.Main
 author: s5y
 api-version: 1.20
 name: LandLord
-version: 0.0.4
+version: 0.0.5
 commands:
   property:
     description: Gives you the property wand
