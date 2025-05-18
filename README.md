@@ -56,6 +56,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Credits
 
-- **Plugin Developer**: Your Name
-- **Contributors**: List of contributors if applicable
+- **Plugin Developer**: s5y
+- **Contributors**: Fork the project and get your name here!
 
