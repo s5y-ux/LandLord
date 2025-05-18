@@ -1,0 +1,18 @@
+main: net.ddns.vcccd.Main
+author: s5y
+api-version: 1.20
+name: LandLord
+version: 0.0.4
+commands:
+  property:
+    description: Gives you the property wand
+    usage: /<command>
+    permission: landlord.getwand
+  removerenter:
+    description: Gives you the renter remover
+    usage: /<command>
+    permission: landlord.getremover
+  managehouses:
+    description: Pulls up the deed menu to manage your houses
+    usage: /<command>
+    permission: landlord.managehouses
