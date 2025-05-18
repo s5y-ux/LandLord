@@ -22,7 +22,7 @@
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://modrinth.com/plugin/morebosses) page.
+1. Download the latest release from the [Releases](https://modrinth.com/plugin/land-lord) page.
 2. Place the `.jar` file in your server's **plugins** folder.
 3. Restart your server to load the plugin.
 
@@ -88,5 +88,3 @@ This plugin is licensed under the MIT License – see the [LICENSE](http://LICEN
 ## Credits
 
 - **Plugin Developer**: s5y
-- **Contributer(s)**: Get a pull request merged and appear here!
-
