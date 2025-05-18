@@ -57,5 +57,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Credits
 
 - **Plugin Developer**: s5y
-- **Contributors**: Fork the project and get your name here!
+- **Contributors**: Get a pull request approved, and get featured here!
 
