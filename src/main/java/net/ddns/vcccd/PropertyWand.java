@@ -29,7 +29,7 @@ public class PropertyWand implements CommandExecutor{
 			wand.setItemMeta(wandMeta);
 			player.getInventory().addItem(wand);
 			player.sendMessage(main.getPluginPrefix() + "You have recieved a property selector");
-			player.sendMessage(main.getPluginPrefix() + "Left-Click the bottom left and top right corners of a property to select property to purchase...");
+			player.sendMessage(main.getPluginPrefix() + "Right-click two opposite corners on the ground to select the area you want to purchase as your property...");
 			
 		} else {
 			assert true;

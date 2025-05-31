@@ -3,6 +3,7 @@ package net.ddns.vcccd;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -17,8 +18,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.UUID;
 
 public class PropertyWandEvents implements Listener {
     
@@ -69,17 +68,19 @@ public class PropertyWandEvents implements Listener {
             player.sendMessage(String.format(ChatColor.translateAlternateColorCodes('&', main.getPluginPrefix() + "Block - X: &f%d&7, Y: &f%d&7, Z: &f%d&7"),
                 selectedBlock.getX(), selectedBlock.getY(), selectedBlock.getZ()));
 
-
             player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 
             // If we have made all the selections
             if (selectionManager.getBlocks(playerId).size() >= 2) {
                 int[][] refPoints = selectionManager.getRefPoints(playerId);
 
+                // TODO: Complete
+                int highestBlock = findHighestBlock(refPoints, world);
+
                 // Gather all blocks in the cubic area
                 // TODO: We can simplyfy this to O(n^2) by using highest block
                 for (int Z = selectionManager.lazyMin(refPoints[2]); Z <= selectionManager.lazyMax(refPoints[2]); Z++) {
-                    for (int Y = selectionManager.lazyMin(refPoints[1]); Y <= selectionManager.lazyMax(refPoints[1]); Y++) {
+                    for (int Y = selectionManager.lazyMin(refPoints[1]) - 2; Y <= highestBlock + 2; Y++) {
                         for (int X = selectionManager.lazyMin(refPoints[0]); X <= selectionManager.lazyMax(refPoints[0]); X++) {
                             selectionManager.addMaterial(playerId, world.getBlockAt(X, Y, Z).getType());
                         }
@@ -130,7 +131,7 @@ public class PropertyWandEvents implements Listener {
                     return;
                 }
 
-                if(selectionOverlapsProperty(refPoints)) {
+                if(selectionOverlapsProperty(refPoints, highestBlock)) {
                     player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "Selection overlaps another property...");
                     particles(player, Particle.SMOKE);
                     player.playSound(player.getLocation(), Sound.BLOCK_GLASS_BREAK, 1, 1);
@@ -171,6 +172,7 @@ public class PropertyWandEvents implements Listener {
         UUID playerId = player.getUniqueId();
         World world = player.getWorld();
         Location playerLocation = player.getLocation();
+        int highestBlock = findHighestBlock(refPoints, world);
     	main.getEconomy().withdrawPlayer(player, main.getConfig().getDouble("HomeRegistrationFee"));
     	player.sendMessage(main.getPluginPrefix() + ChatColor.GREEN + "Deed purchased sucessfully!");
     	player.sendMessage(main.getPluginPrefix() + String.format(ChatColor.translateAlternateColorCodes('&', "Your balance is now: &f[&a$%.2f&f]"), main.getEconomy().getBalance(player)));
@@ -180,24 +182,26 @@ public class PropertyWandEvents implements Listener {
     	player.sendTitle(ChatColor.GREEN + "Congratulations!", ChatColor.GRAY + "You now own a Home!", 5, 40, 5);
     	player.playSound(playerLocation, Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
     	ArrayList<Integer> xRange = new ArrayList<Integer>(java.util.List.of(lazyMin(refPoints[0]), lazyMax(refPoints[0])));
-    	ArrayList<Integer> yRange = new ArrayList<Integer>(java.util.List.of(lazyMin(refPoints[1]), lazyMax(refPoints[1])));
+    	ArrayList<Integer> yRange = new ArrayList<Integer>(java.util.List.of(lazyMin(refPoints[1]), highestBlock));
     	ArrayList<Integer> zRange = new ArrayList<Integer>(java.util.List.of(lazyMin(refPoints[2]), lazyMax(refPoints[2])));
     	this.main.getPlayerPropertiesFile().saveJson(new propertyJSON(world.getName(), playerId, xRange, yRange, zRange));
     }
-
     
-    private boolean selectionOverlapsProperty(int refPoints[][]) {
-    	List<propertyJSON> playerProperties = main.getPlayerPropertiesFile().loadJson(propertyJSON.class);
-    	for(propertyJSON playerProperty: playerProperties) {
-		boolean inRangeX = !(lazyMax(refPoints[0]) < playerProperty.xRange.get(0) || lazyMin(refPoints[0]) > playerProperty.xRange.get(1));
-        boolean inRangeY = !(lazyMax(refPoints[1]) < playerProperty.yRange.get(0) || lazyMin(refPoints[1]) > playerProperty.yRange.get(1));
-        boolean inRangeZ = !(lazyMax(refPoints[2]) < playerProperty.zRange.get(0) || lazyMin(refPoints[2]) > playerProperty.zRange.get(1));
-		if(inRangeX && inRangeY && inRangeZ) {
-			return true;
-		 }
-    	}
-    	return false;
+    private boolean selectionOverlapsProperty(int[][] refPoints, int highestBlock) {
+    List<propertyJSON> playerProperties = main.getPlayerPropertiesFile().loadJson(propertyJSON.class);
+    if (playerProperties == null) {
+        return false;
     }
+    for (propertyJSON playerProperty : playerProperties) {
+        boolean inRangeX = !(lazyMax(refPoints[0]) < playerProperty.xRange.get(0) || lazyMin(refPoints[0]) > playerProperty.xRange.get(1));
+        boolean inRangeY = !(highestBlock < playerProperty.yRange.get(0) || lazyMin(refPoints[1]) > playerProperty.yRange.get(1));
+        boolean inRangeZ = !(lazyMax(refPoints[2]) < playerProperty.zRange.get(0) || lazyMin(refPoints[2]) > playerProperty.zRange.get(1));
+        if (inRangeX && inRangeY && inRangeZ) {
+            return true;
+        }
+    }
+    return false;
+}
 
     private boolean playerHasTooManyHomes(Player player) {
     	List<propertyJSON> playerProperties = main.getPlayerPropertiesFile().loadJson(propertyJSON.class);
@@ -211,6 +215,23 @@ public class PropertyWandEvents implements Listener {
     		}
     	}
     	return(homeCount >= 9);
+    }
+
+    private int findHighestBlock(int[][] selectionPoints, World world){
+
+        int highestBlock = -70;
+
+        for (int Z = selectionManager.lazyMin(selectionPoints[2]); Z <= selectionManager.lazyMax(selectionPoints[2]); Z++) {
+                        for (int X = selectionManager.lazyMin(selectionPoints[0]); X <= selectionManager.lazyMax(selectionPoints[0]); X++) {
+                            Block highestBlockInWorld = world.getHighestBlockAt(X, Z);
+                            if(highestBlockInWorld.getY() > highestBlock){
+                                highestBlock = highestBlockInWorld.getY();
+                            }
+                        }
+                    
+                }
+
+                return highestBlock;
     }
     // ===================================================================================================================
 }

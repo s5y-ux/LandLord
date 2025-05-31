@@ -63,6 +63,7 @@ public class Main extends JavaPlugin{
 	public void onEnable() {	
 		new CollectRent(this).runTaskTimer(this, 0L, 24000L);
 		FileConfiguration config = this.getConfig();
+
 		config.addDefault("HomeRegistrationFee", 100.00);
 		config.addDefault("DaysBeforeRent", 1);
 		config.addDefault("RentMoney", 100.00);
@@ -82,7 +83,7 @@ public class Main extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new Renter(this), this);
         getServer().getPluginManager().registerEvents(new RenterEvents(), this);
         getServer().getPluginManager().registerEvents(new DeedMenu(this), this);
-        getServer().getPluginManager().registerEvents(new PropertyGreifPrevention(this), this);
+        getServer().getPluginManager().registerEvents(new PropertyGriefPrevention(this), this);
         getServer().getPluginManager().registerEvents(new UpdateChecker(), this);
         this.getCommand("managehouses").setExecutor(new DeedMenu(this));
         this.getCommand("property").setExecutor(new PropertyWand(this));

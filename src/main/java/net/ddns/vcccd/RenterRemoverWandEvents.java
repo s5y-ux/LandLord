@@ -1,6 +1,9 @@
 package net.ddns.vcccd;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -22,9 +25,12 @@ public class RenterRemoverWandEvents implements Listener {
 		Player player = event.getPlayer();
 		if(event.getRightClicked() instanceof Villager) {
 			Villager potentialRenter = (Villager) event.getRightClicked();
+			Location removedLocation = potentialRenter.getLocation();
 			if(potentialRenter.getCustomName().equals(renterName)) {
 				potentialRenter.remove();
 				player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "Renter had been evicted!");
+				player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_HURT, 1, 1);
+				player.getWorld().spawnParticle(Particle.CLOUD, removedLocation, 10);
 			}
 		}
 		} catch (Exception e) {
