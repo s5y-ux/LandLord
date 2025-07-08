@@ -21,7 +21,7 @@ public class PropertyGriefPrevention implements Listener {
 	
 	public PropertyGriefPrevention(Main main) {
 		this.main = main;
-		//Test
+		
 	}
 	
 	private boolean blockInProperty(Block block, propertyJSON playerProperty) {
