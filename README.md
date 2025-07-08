@@ -4,58 +4,87 @@
 ![GitHub issues](https://img.shields.io/github/issues/s5y-ux/LandLord)
 ![GitHub stars](https://img.shields.io/github/stars/s5y-ux/LandLord?style=social)
 
-
 ## Overview
 
-[Watch this video](https://www.youtube.com/watch?v=videoID)
-**LandLord** is a Bukkit plugin that introduces a property management system where players can spawn "renters" (villagers) into designated properties within the game. Renters can be evicted using a special item and must be tied to a property. Players can also use a special "Renter Remover Wand" to remove renters from their properties.
+**LandLord** is a Bukkit plugin that introduces a property management system. Players can spawn "renters" (villagers) into designated properties, evict them with a special item, and manage them using tools like the "Renter Remover Wand."
+
+---
 
 ## Features
 
-- **Renter Spawn Egg**: Spawn renters (villagers) in a designated property using an egg item.
-- **Property Range Check**: Renters can only be spawned within the bounds of a specified property.
-- **Renter Remover Wand**: Special item used to evict renters by right-clicking on them.
-- **Anti-Damage**: Renters are immune to damage to keep them safe from players.
-- **Event Handling**: Handles spawning and despawning of renters.
+- **Renter Spawn Egg** – Spawn renters (villagers) in a designated property using a custom egg item.
+- **Property Range Check** – Renters can only be spawned within the bounds of a specific property.
+- **Renter Remover Wand** – Right-click a renter to evict them instantly.
+- **Anti-Damage** – Renters are immune to player or environmental damage.
+- **Event Handling** – Custom events for spawning and despawning renters.
+
+---
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/yourusername/LandLord/releases) page.
-2. Place the `.jar` file into the `plugins` folder of your Minecraft server.
-3. Restart the server to load the plugin.
+1. Download the latest release from the [Releases](https://modrinth.com/plugin/land-lord) page.
+2. Place the `.jar` file in your server's **plugins** folder.
+3. Restart your server to load the plugin.
+
+---
 
 ## Commands
 
-- `/renterremoverwand`: Gives the player a special "Renter Remover Wand" to evict renters.
-  
+```bash
+/property - Get the Property Wand
+/removerenter - Get the Renter Remover Wand
+/managehouses - Open the Deed Menu to manage properties
+```
+
+---
+
+## Permissions
+
+```bash
+landlord.getwand - Allows use of /property
+landlord.getremover - Allows use of /removerenter
+landlord.managehouses - Allows use of /managehouses
+```
+
+---
+
 ## How to Use
 
 ### Spawning Renters
-1. Get the **Renter Spawn Egg** from your inventory by using the command or plugin features.
-2. Throw the egg at the ground within a property to spawn a renter (villager).
-3. Renters will be automatically tied to the property, and you will be notified upon successful placement.
+
+1. Get the **Renter Spawn Egg** from your inventory via command or plugin feature.  
+2. Throw the egg inside a designated property to spawn a renter.  
+3. The renter is automatically linked to the property; a success message will confirm it.
 
 ### Removing Renters
-1. Right-click a renter using the **Renter Remover Wand** to evict them.
-2. The renter will be removed, and you will be notified that the renter has been evicted.
+
+1. Right-click a renter with the **Renter Remover Wand**.  
+2. You’ll receive confirmation when the renter has been evicted.
 
 ### Renter Protection
-- Renters are immune to damage by default, ensuring they won't be harmed by other players.
+
+- Renters are immune to damage, preventing accidental harm or griefing.
+
+---
 
 ## Configuration
 
-This plugin stores property data in JSON format. Properties and their ranges can be customized within the config files. Modify the properties for your specific needs.
+Property data is stored in JSON format. You can customize properties, ranges, and renter behavior in the config files to suit your server’s needs.
+
+---
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions, bugs, or improvements, feel free to open an issue or a pull request. Ensure that all code adheres to the coding standards and includes necessary comments.
+Suggestions, issues, or pull requests are welcome! Make sure your code follows the plugin’s standards and includes necessary documentation/comments.
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This plugin is licensed under the MIT License – see the [LICENSE](http://LICENSE) file for full details.
+
+---
 
 ## Credits
 
 - **Plugin Developer**: s5y
-- **Contributors**: Fork the project and get your name here!
-
