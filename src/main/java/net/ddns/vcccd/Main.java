@@ -9,11 +9,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin{
-	
+    
+    private GriefPrevention griefPrevention;
 	private ConsoleCommandSender console = getServer().getConsoleSender();
 	private String prefix = ChatColor.translateAlternateColorCodes('&', "&7[&aLandLord&7] - ");
 	private static Economy econ = null;
@@ -32,6 +34,10 @@ public class Main extends JavaPlugin{
 	public Economy getEconomy() {
 		return(econ);
 	}
+
+    public GriefPrevention getGriefPrevention() {
+        return(griefPrevention);
+    }
 	
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
@@ -63,6 +69,7 @@ public class Main extends JavaPlugin{
 	public void onEnable() {	
 		new CollectRent(this).runTaskTimer(this, 0L, 24000L);
 		FileConfiguration config = this.getConfig();
+
 		config.addDefault("HomeRegistrationFee", 100.00);
 		config.addDefault("DaysBeforeRent", 1);
 		config.addDefault("RentMoney", 100.00);
@@ -82,7 +89,7 @@ public class Main extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new Renter(this), this);
         getServer().getPluginManager().registerEvents(new RenterEvents(), this);
         getServer().getPluginManager().registerEvents(new DeedMenu(this), this);
-        getServer().getPluginManager().registerEvents(new PropertyGreifPrevention(this), this);
+        getServer().getPluginManager().registerEvents(new PropertyGriefPrevention(this), this);
         getServer().getPluginManager().registerEvents(new UpdateChecker(), this);
         this.getCommand("managehouses").setExecutor(new DeedMenu(this));
         this.getCommand("property").setExecutor(new PropertyWand(this));
