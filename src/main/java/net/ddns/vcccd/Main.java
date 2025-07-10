@@ -9,13 +9,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin{
     
-    private GriefPrevention griefPrevention;
 	private ConsoleCommandSender console = getServer().getConsoleSender();
 	private String prefix = ChatColor.translateAlternateColorCodes('&', "&7[&aLandLord&7] - ");
 	private static Economy econ = null;
@@ -34,10 +32,6 @@ public class Main extends JavaPlugin{
 	public Economy getEconomy() {
 		return(econ);
 	}
-
-    public GriefPrevention getGriefPrevention() {
-        return(griefPrevention);
-    }
 	
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
