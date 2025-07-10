@@ -19,6 +19,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import me.ryanhamshire.GriefPrevention.Claim;
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
+
 public class PropertyWandEvents implements Listener {
     
     private final Main main;
@@ -131,6 +134,14 @@ public class PropertyWandEvents implements Listener {
                     return;
                 }
 
+                if(!selectionOnPlayerProperty(player, player.getLocation())){
+                    player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "You must be on your own property to purchase a home...");
+                    particles(player, Particle.SMOKE);
+                    player.playSound(player.getLocation(), Sound.BLOCK_GLASS_BREAK, 1, 1);
+                    selectionManager.clearAll(playerId);
+                    return;
+                }
+
                 if(selectionOverlapsProperty(refPoints, highestBlock)) {
                     player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "Selection overlaps another property...");
                     particles(player, Particle.SMOKE);
@@ -202,6 +213,11 @@ public class PropertyWandEvents implements Listener {
     }
     return false;
 }
+
+    private boolean selectionOnPlayerProperty(Player player, Location location){
+        Claim checkedClaim = GriefPrevention.instance.dataStore.getClaimAt(location, true, null);
+        return checkedClaim != null && checkedClaim.getOwnerName().equals(player.getName());
+    }
 
     private boolean playerHasTooManyHomes(Player player) {
     	List<propertyJSON> playerProperties = main.getPlayerPropertiesFile().loadJson(propertyJSON.class);
