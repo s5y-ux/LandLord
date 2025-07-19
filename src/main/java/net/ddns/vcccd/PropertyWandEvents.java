@@ -134,12 +134,23 @@ public class PropertyWandEvents implements Listener {
                     return;
                 }
 
-                if(!selectionOnPlayerProperty(player, player.getLocation())){
-                    player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "You must be on your own property to purchase a home...");
+                if(main.getConfig().getBoolean("GriefPreventionBridge")) {
+                    try{
+                    if(!selectionOnPlayerProperty(player, player.getLocation())){
+                        player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "You must be on your claim to purchase a home...");
+                        particles(player, Particle.SMOKE);
+                        player.playSound(player.getLocation(), Sound.BLOCK_GLASS_BREAK, 1, 1);
+                        selectionManager.clearAll(playerId);
+                        return;
+                    }   
+                } catch (NoClassDefFoundError e) {
+                    player.sendMessage(main.getPluginPrefix() + ChatColor.RED + "GriefPrevention plugin is not enabled on this server.");
+                    player.sendMessage(main.getPluginPrefix() + "Landlord can still work, just change the config.yml to set 'GriefPreventionBridge' to false.");
                     particles(player, Particle.SMOKE);
                     player.playSound(player.getLocation(), Sound.BLOCK_GLASS_BREAK, 1, 1);
                     selectionManager.clearAll(playerId);
                     return;
+                }
                 }
 
                 if(selectionOverlapsProperty(refPoints, highestBlock)) {

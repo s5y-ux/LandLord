@@ -12,3 +12,6 @@ SellAmount: 50.00
 
 # The maximum cubic area of an acceptable property selection
 MaxPropertySize: 5000
+
+# Determines which other plugins are used on the server for property requirements
+GriefPrevention: FALSE
