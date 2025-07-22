@@ -56,6 +56,9 @@ public class Renter implements Listener{
 		Player player = event.getPlayer();
 		Location eggLocation = event.getEgg().getLocation();
 		World world = event.getEgg().getWorld();
+		boolean isRenterEgg = event.getEgg().getItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&aRenter Spawn Egg"));
+		
+		if(isRenterEgg){
 		event.setHatching(false);
 		
 		Villager renter = (Villager) world.spawnEntity(eggLocation, EntityType.VILLAGER);
@@ -70,7 +73,7 @@ public class Renter implements Listener{
 		renter.setCustomNameVisible(true);
 
 		player.sendMessage(main.getPluginPrefix() + "Renter is now tied to this property...");
-		
 	}
+	} 
 	
 }
